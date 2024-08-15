@@ -1,4 +1,4 @@
-//========= Copyright Valve Corporation, All rights reserved. ============//
+﻿//========= Copyright Valve Corporation, All rights reserved. ============//
 //
 // Purpose: 
 //
@@ -191,7 +191,8 @@ void CPropJeep::Precache( void )
 	PrecacheScriptSound( "PropJeep.FireCannon" );
 	PrecacheScriptSound( "PropJeep.FireChargedCannon" );
 	PrecacheScriptSound( "PropJeep.AmmoOpen" );
-
+	PrecacheScriptSound("Airboat_headlight_on");
+	PrecacheScriptSound("Airboat_headlight_off");
 	PrecacheScriptSound( "Jeep.GaussCharge" );
 
 	PrecacheModel( GAUSS_BEAM_SPRITE );
@@ -1325,17 +1326,17 @@ void CPropJeep::DriveVehicle( float flFrameTime, CUserCmd *ucmd, int iButtonsDow
 	int iButtons = ucmd->buttons;
 
 	//Adrian: No headlights on Superfly.
-/*	if ( ucmd->impulse == 100 )
+	if (ucmd->impulse == 100)
 	{
 		if (HeadlightIsOn())
 		{
 			HeadlightTurnOff();
 		}
-        else 
+		else
 		{
 			HeadlightTurnOn();
 		}
-	}*/
+	}
 		
 	// Only handle the cannon if the vehicle has one
 	if ( m_bHasGun )
@@ -1368,6 +1369,24 @@ void CPropJeep::DriveVehicle( float flFrameTime, CUserCmd *ucmd, int iButtonsDow
 	}
 
 	BaseClass::DriveVehicle( flFrameTime, ucmd, iButtonsDown, iButtonsReleased );
+}
+
+//-----------------------------------------------------------------------------
+// Purpose:
+//-----------------------------------------------------------------------------
+void CPropJeep::HeadlightTurnOn(void)
+{
+	EmitSound("Airboat_headlight_on");
+	m_bHeadlightIsOn = true;
+}
+
+//-----------------------------------------------------------------------------
+// Purpose:
+//-----------------------------------------------------------------------------
+void CPropJeep::HeadlightTurnOff(void)
+{
+	EmitSound("Airboat_headlight_off");
+	m_bHeadlightIsOn = false;
 }
 
 //-----------------------------------------------------------------------------
@@ -1471,7 +1490,11 @@ void CPropJeep::EnterVehicle( CBaseCombatCharacter *pPassenger )
 //-----------------------------------------------------------------------------
 void CPropJeep::ExitVehicle( int nRole )
 {
-	HeadlightTurnOff();
+
+	if (HeadlightIsOn() )
+	{
+		HeadlightTurnOff();
+	}
 
 	BaseClass::ExitVehicle( nRole );
 
