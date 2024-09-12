@@ -584,5 +584,4 @@ int CCompileCaptionsApp::Main()
 
 //-----------------------------------------------------------------------------
 // Purpose: Main entry point 
-//-----------------------------------------------------------------------------
-DEFINE_CONSOLE_STEAM_APPLICATION_OBJECT( CCompileCaptionsApp )
+//-----------------------------------------------------------------------------DEFINE_CONSOLE_STEAM_APPLICATION_OBJECT( CCompileCaptionsApp )

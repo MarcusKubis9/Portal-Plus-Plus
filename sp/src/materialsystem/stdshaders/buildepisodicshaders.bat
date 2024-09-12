@@ -5,10 +5,10 @@ rem ================================
 rem ==== MOD PATH CONFIGURATIONS ===
 
 rem == Set the absolute path to your mod's game directory here ==
-set GAMEDIR=%cd%\..\..\..\game\mod_episodic
+set GAMEDIR=C:\PROGRA~2\Steam\STEAMA~1\common\SOURCE~4\PORTAL~1
 
 rem == Set the relative or absolute path to Source SDK Base 2013 Singleplayer\bin ==
-set SDKBINDIR=D:\SteamBeta\SteamApps\common\Source SDK Base 2013 Singleplayer\bin
+set SDKBINDIR=C:\PROGRA~2\Steam\STEAMA~1\common\SOURCE~4\bin
 
 rem ==  Set the Path to your mod's root source code ==
 rem This should already be correct, accepts relative paths only!
